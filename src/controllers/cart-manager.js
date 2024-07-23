@@ -10,15 +10,19 @@ class CartManager {
 	static ultId = 0;
 
 	async addCart() {
-		const nuevoCarrito = {
-			id: ++CartManager.ultId,
-			productos: [],
-		};
+		try {
+			const nuevoCarrito = {
+				id: ++CartManager.ultId,
+				productos: [],
+			};
 
-		this.carts.push(nuevoCarrito);
+			this.carts.push(nuevoCarrito);
 
-		await fs.writeFile(this.path, JSON.stringify(this.carts, null, 2));
-		return nuevoCarrito;
+			await fs.writeFile(this.path, JSON.stringify(this.carts, null, 2));
+			return nuevoCarrito;
+		} catch (error) {
+			console.log("Error creando el carrito");
+		}
 	}
 
 	async getCartById(id) {
