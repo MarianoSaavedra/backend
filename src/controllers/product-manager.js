@@ -9,43 +9,52 @@ class ProductManager {
 	//STATIC
 	static ultId = 0;
 
-	//AGREGAR UN PRODUCTO
+	// AGREGAR UN PRODUCTO //
 	async addProduct({ title, description, price, thumbnails, code, stock, category }) {
-		let respuesta;
+		try {
+			const data = await fs.readFile(this.path, "utf-8");
+			const arrayProducts = JSON.parse(data || "[]");
 
-		const arrayProducts = JSON.parse((await fs.readFile(this.path, "utf-8")) || "[]");
+			if (!title || !description || !price || !code || !stock || !category) {
+				return "Todos los campos son obligatorios";
+			}
+			if (arrayProducts.some((item) => item.code === code)) {
+				return "El codigo esta repetido";
+			}
 
-		if (!title || !description || !price || !code || !stock || !category) {
-			return (respuesta = "Todos los campos son obligatorios");
+			const newProduct = {
+				id: ++ProductManager.ultId,
+				title,
+				description,
+				price,
+				thumbnails: thumbnails || [],
+				code,
+				stock,
+				status: true,
+				category,
+			};
+
+			arrayProducts.push(newProduct);
+
+			await fs.writeFile(this.path, JSON.stringify(arrayProducts, null, 2));
+
+			return "Producto agregado correctamente";
+		} catch (error) {
+			console.error("Error agregando el producto", error);
+			return "Error agregando el producto";
 		}
-		if (arrayProducts.some((item) => item.code === code)) {
-			return (respuesta = "El codigo esta repetido");
-		}
-
-		const nuevoProducto = {
-			title,
-			description,
-			price,
-			thumbnails: thumbnails || [],
-			code,
-			stock,
-			status: true,
-			category,
-		};
-
-		nuevoProducto.id = ++ProductManager.ultId;
-
-		arrayProducts.push(nuevoProducto);
-
-		await fs.writeFile(this.path, JSON.stringify(arrayProducts, null, 2));
-
-		return (respuesta = "Producto agregado correctamente");
 	}
 
+	// BUSCAR PRODUCTOS //
 	async getProducts() {
-		const arrayProducts = JSON.parse((await fs.readFile(this.path, "utf-8")) || "[]");
+		try {
+			const data = await fs.readFile(this.path, "utf-8");
+			const arrayProducts = JSON.parse(data || "[]");
 
-		return arrayProducts;
+			return arrayProducts;
+		} catch (error) {
+			console.error("Error al leer el archivo", error);
+		}
 	}
 
 	async getProductsById(id) {

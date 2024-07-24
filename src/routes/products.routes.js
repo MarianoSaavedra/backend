@@ -4,27 +4,48 @@ const ProductManager = require("../controllers/product-manager.js");
 
 const manager = new ProductManager("./src/data/products.json");
 
-//AGREGAR UN PRODUCTO
-router.post("/", async (req, res) => {
-	const { title, description, price, thumbnails, code, stock, category } = req.body;
+// AGREGAR UN PRODUCTO //
 
-	let respuesta = await manager.addProduct({ title, description, price, thumbnails, code, stock, category });
-	res.send(respuesta);
+router.post("/", async (req, res) => {
+	const newProduct = req.body;
+
+	try {
+		let respuesta = await manager.addProduct(newProduct);
+
+		switch (respuesta) {
+			case "Todos los campos son obligatorios":
+				res.send({ status: 400, body: respuesta });
+				break;
+			case "El codigo esta repetido":
+				res.send({ status: 400, body: respuesta });
+				break;
+			case "Producto agregado correctamente":
+				res.send({ status: 201, body: respuesta });
+				break;
+		}
+	} catch (error) {
+		res.send({ status: 500, body: "No se pudo cargar el producto", error });
+	}
 });
 
-//GET PRODUCT
+// BUSCAR PRODUCTOS //
 router.get("/", async (req, res) => {
-	let respuesta = await manager.getProducts();
-	let limite = req.query.limit;
+	const limite = req.query.limit;
 
-	if (respuesta.length <= 0) {
-		res.send("Aun no hay productos");
-	} else {
-		if (!limite) {
-			res.send(respuesta);
-		} else {
-			res.send(respuesta.slice(0, limite));
+	try {
+		const arrayProducts = await manager.getProducts();
+
+		if (arrayProducts.length === 0) {
+			return res.send({ status: 200, body: "Aun no hay productos cargados" });
 		}
+
+		if (limite && !isNaN(limite) && limite > 0) {
+			return res.send({ status: 200, body: arrayProducts.slice(0, limite) });
+		}
+
+		return res.send({ status: 200, body: arrayProducts });
+	} catch (error) {
+		res.send({ status: 500, body: "Error interno del servidor" });
 	}
 });
 
