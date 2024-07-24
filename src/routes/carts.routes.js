@@ -4,26 +4,43 @@ const CartManager = require("../controllers/cart-manager.js");
 
 const manager = new CartManager("./src/data/carts.json");
 
+// CREAR CARRITO //
+
 router.post("/", async (req, res) => {
-	let respuesta = await manager.addCart();
-	res.send(respuesta);
+	try {
+		let newCart = await manager.addCart();
+		res.send({ status: 201, body: "El carrito fue creado con extio", newCart });
+	} catch (error) {
+		res.send({ status: 500, body: "Error del servidor", error });
+	}
 });
+
+// BUSCAR CARRITO POR ID //
 
 router.get("/:cid", async (req, res) => {
-	const id = req.params.cid;
+	const cartID = req.params.cid;
 
-	let respuesta = await manager.getCartById(parseInt(id));
-
-	res.send(respuesta);
+	try {
+		const cartBuscado = await manager.getCartById(parseInt(cartID));
+		res.send({ status: 200, body: "El carrito fue encontrado con exito", carrito: cartBuscado.products });
+	} catch (error) {
+		res.send({ status: 500, body: "Error del servidor", error });
+	}
 });
 
+// AGREGAR PRODUCTOS POR ID DE CARRITO //
+
 router.post("/:cid/product/:pid", async (req, res) => {
-	const cid = req.params.cid;
-	const pid = req.params.pid;
+	const cartID = req.params.cid;
+	const productID = req.params.pid;
 	const quantity = req.body.quantity || 1;
 
-	let respuesta = await manager.addProductCart(cid, pid, quantity);
-	res.send(respuesta.productos);
+	try {
+		const updatedCart = await manager.addProductCart(parseInt(cartID), productID, quantity);
+		res.send({ status: 200, body: "Producto agregado correctamente", productos: updatedCart.products });
+	} catch (error) {
+		res.send({ status: 500, body: "Error al ingresar el producto al carrito" });
+	}
 });
 
 module.exports = router;

@@ -9,41 +9,61 @@ class CartManager {
 	//STATIC
 	static ultId = 0;
 
+	//METODOS
+
+	// CREAR CARRITO //
+
 	async addCart() {
 		try {
-			const nuevoCarrito = {
+			const newCart = {
 				id: ++CartManager.ultId,
-				productos: [],
+				products: [],
 			};
 
-			this.carts.push(nuevoCarrito);
+			this.carts.push(newCart);
 
 			await fs.writeFile(this.path, JSON.stringify(this.carts, null, 2));
-			return nuevoCarrito;
+
+			return newCart;
 		} catch (error) {
-			console.log("Error creando el carrito");
+			console.error("Error creando el carrito", error);
 		}
 	}
 
-	async getCartById(id) {
-		let carritoBuscado = await this.carts.find((carrito) => carrito.id === parseInt(id));
+	// BUSCAR CARRITO POR ID //
 
-		return carritoBuscado;
+	getCartById(cartID) {
+		try {
+			const cartBuscado = this.carts.find((carrito) => carrito.id === cartID);
+
+			if (!cartBuscado) {
+				throw new Error("No existe el carrito que contenga la ID buscada");
+			}
+			return cartBuscado;
+		} catch (error) {
+			console.error("Error buscando el carrito", error);
+		}
 	}
 
-	//AGREGAR PRODUCTO A UN CARRITO SELECCIONADO
-	async addProductCart(cid, pid, quantity = 1) {
-		const carrito = await this.getCartById(parseInt(cid));
-		const isProduct = carrito.productos.find((productos) => productos.product === pid);
+	// AGREGAR PRODUCTOS POR ID DE CARRITO //
 
-		if (isProduct) {
-			isProduct.quantity += quantity;
-		} else {
-			carrito.productos.push({ product: pid, quantity: quantity });
+	async addProductCart(cartID, productID, quantity = 1) {
+		const cart = await this.getCartById(cartID);
+		const isProduct = cart.products.find((productos) => productos.product === productID);
+
+		try {
+			if (isProduct) {
+				isProduct.quantity += quantity;
+			} else {
+				cart.products.push({ product: productID, quantity: quantity });
+			}
+
+			await fs.writeFile(this.path, JSON.stringify(this.carts, null, 2));
+
+			return cart;
+		} catch (error) {
+			console.error("Error agregando el producto al carrito");
 		}
-
-		await fs.writeFile(this.path, JSON.stringify(this.carts, null, 2));
-		return carrito;
 	}
 }
 
