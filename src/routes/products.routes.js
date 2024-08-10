@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const ProductManager = require("../controllers/product-manager.js");
+import ProductManager from "../controllers/product-manager.js";
 
 const manager = new ProductManager("./src/data/products.json");
 
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
 				res.send({ status: 400, body: respuesta });
 				break;
 			case "Producto agregado correctamente":
-				res.send({ status: 201, body: respuesta });
+				res.status({ status: 201, body: respuesta });
 				break;
 		}
 	} catch (error) {
@@ -77,4 +77,4 @@ router.delete("/:pid", async (req, res) => {
 	res.send(respuesta);
 });
 
-module.exports = router;
+export default router;

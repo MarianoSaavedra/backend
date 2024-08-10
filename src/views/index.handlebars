@@ -1,0 +1,18 @@
+<header>
+	<h1>Productos</h1>
+</header>
+
+<div>
+	{{#each productos}}
+		<div>
+			<h3>{{this.title}}</h3>
+			<img src="https://picsum.photos/200/200" alt="Imagen Random" />
+			<p>{{this.price}}</p>
+			<p>{{this.description}}</p>
+			<p>{{this.category}}</p>
+			<p>{{this.code}}</p>
+			<p>{{this.stock}}</p>
+			<button>Comprar</button>
+		</div>
+	{{/each}}
+</div>

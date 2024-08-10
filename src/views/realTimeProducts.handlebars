@@ -1,0 +1,24 @@
+<h1>Real Time</h1>
+
+<div id="boxProductos">
+
+</div>
+
+<form action="/api/products/" method="POST">
+	<label for="title">Titutlo</label>
+	<input type="text" id="title" name="title" />
+	<label for="description">Descripcion</label>
+	<input type="text" id="description" name="description" />
+	<label for="price">Precio</label>
+	<input type="text" id="price" name="price" />
+	<label for="code">Codigo</label>
+	<input type="text" id="code" name="code" />
+	<label for="stock">Stock</label>
+	<input type="text" id="stock" name="stock" />
+	<label for="category">Category</label>
+	<input type="category" id="category" name="category" />
+	<input type="submit" value="Enviar" />
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+<script src="js/main.js"></script>
