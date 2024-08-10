@@ -1,35 +1,13 @@
 [
   {
-    "id": 1,
-    "title": "123",
-    "description": "123",
-    "price": "123",
-    "thumbnails": [],
-    "code": "123",
-    "stock": "123",
-    "status": true,
-    "category": "123"
-  },
-  {
-    "id": 2,
-    "title": "123",
-    "description": "123",
-    "price": "123",
-    "thumbnails": [],
-    "code": "1241241",
-    "stock": "123123",
-    "status": true,
-    "category": "123123"
-  },
-  {
     "id": 3,
-    "title": "asd",
-    "description": "123",
-    "price": "asd",
+    "title": "Arroz",
+    "description": "Integral",
+    "price": "1500",
     "thumbnails": [],
-    "code": "123asdasd",
-    "stock": "asd",
+    "code": "ARROZ123",
+    "stock": "5",
     "status": true,
-    "category": "123"
+    "category": "Alimentos"
   }
 ]
