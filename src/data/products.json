@@ -1,13 +1,24 @@
 [
   {
-    "id": 3,
+    "id": 1,
     "title": "Arroz",
-    "description": "Integral",
+    "description": "Comida",
     "price": "1500",
     "thumbnails": [],
     "code": "ARROZ123",
+    "stock": "1",
+    "status": true,
+    "category": "Alimenos"
+  },
+  {
+    "id": 2,
+    "title": "Mayonesa",
+    "description": "Aderezo",
+    "price": "2000",
+    "thumbnails": [],
+    "code": "MAYO123",
     "stock": "5",
     "status": true,
-    "category": "Alimentos"
+    "category": "Aderezo"
   }
 ]
