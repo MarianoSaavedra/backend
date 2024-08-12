@@ -45,15 +45,15 @@ const renderProducts = (productos) => {
 	contenedor.innerHTML = "";
 	productos.forEach((producto) => {
 		const card = document.createElement("div");
-		card.innerHTML = `<div>
-					<h3>${producto.title}</h3>
-					<img src="https://picsum.photos/200/200" alt="Imagen Random" />
-					<p>${producto.price}</p>
-					<p>${producto.description}</p>
-					<p>${producto.category}</p>
-					<p>${producto.code}</p>
-					<p>${producto.stock}</p>
-					<button>Eliminar</button>
+		card.innerHTML = `<div class="card col-3 text-center p-3 bg-secondary text-light border-5">
+					<img src="https://picsum.photos/150" alt="Imagen Random" class="m-auto rounded-2" />
+					<span${producto.title}</span>
+					<span>${producto.price}</span>
+					<span>${producto.description}</span>
+					<span>${producto.category}</span>
+					<span>${producto.code}</span>
+					<span>${producto.stock}</span>
+					<button >Eliminar</button>
 				</div>`;
 		contenedor.appendChild(card);
 		card.querySelector("button").addEventListener("click", () => {

@@ -2,23 +2,12 @@
   {
     "id": 1,
     "title": "Arroz",
-    "description": "Comida",
+    "description": "Largo Fino",
     "price": "1500",
     "thumbnails": [],
     "code": "ARROZ123",
-    "stock": "1",
+    "stock": "10",
     "status": true,
-    "category": "Alimenos"
-  },
-  {
-    "id": 2,
-    "title": "Mayonesa",
-    "description": "Aderezo",
-    "price": "2000",
-    "thumbnails": [],
-    "code": "MAYO123",
-    "stock": "5",
-    "status": true,
-    "category": "Aderezo"
+    "category": "Alimentos"
   }
 ]
