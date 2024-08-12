@@ -45,9 +45,9 @@ const renderProducts = (productos) => {
 	contenedor.innerHTML = "";
 	productos.forEach((producto) => {
 		const card = document.createElement("div");
-		card.innerHTML = `<div class="card col-3 text-center p-3 bg-secondary text-light border-5">
+		card.innerHTML = `<div class="card col-6 text-center p-3 bg-secondary text-light border-5">
 					<img src="https://picsum.photos/150" alt="Imagen Random" class="m-auto rounded-2" />
-					<span${producto.title}</span>
+					<span>${producto.title}</span>
 					<span>${producto.price}</span>
 					<span>${producto.description}</span>
 					<span>${producto.category}</span>

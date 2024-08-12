@@ -9,5 +9,16 @@
     "stock": "10",
     "status": true,
     "category": "Alimentos"
+  },
+  {
+    "id": 1,
+    "title": "Mayones",
+    "description": "Dale",
+    "price": "Que ",
+    "thumbnails": [],
+    "code": "i",
+    "stock": "asda123",
+    "status": true,
+    "category": "123123"
   }
 ]

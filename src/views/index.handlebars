@@ -1,12 +1,14 @@
-{{#each productos}}
-	<div class="card col-3 text-center p-3 bg-secondary text-light border-5">
-		<img src="https://picsum.photos/150" alt="Imagen Random" class="m-auto rounded-2" />
-		<span class="m-0 p-0">Titulo: {{this.title}}</span>
-		<span class="m-0 p-0">Precio: ${{this.price}}</span>
-		<span class="m-0 p-0">Descripcion: {{this.description}}</span>
-		<span class="m-0 p-0">Categoria: {{this.category}}</span>
-		<span class="m-0 p-0">Codigo: {{this.code}}</span>
-		<span class="m-0 p-0">Stock: {{this.stock}}</span>
-		<button class="m-auto col-4 p-0 mt-5 border-4 rounded-5">Comprar</button>
-	</div>
-{{/each}}
+<div class="row p-5 gap-5 bg-dark justify-content-center">
+	{{#each productos}}
+		<div class="card col-3 text-center p-3 bg-secondary text-light border-5">
+			<img src="https://picsum.photos/150" alt="Imagen Random" class="m-auto rounded-2" />
+			<span class="m-0 p-0">Titulo: {{this.title}}</span>
+			<span class="m-0 p-0">Precio: ${{this.price}}</span>
+			<span class="m-0 p-0">Descripcion: {{this.description}}</span>
+			<span class="m-0 p-0">Categoria: {{this.category}}</span>
+			<span class="m-0 p-0">Codigo: {{this.code}}</span>
+			<span class="m-0 p-0">Stock: {{this.stock}}</span>
+			<button class="m-auto col-4 p-0 mt-5 border-4 rounded-5">Comprar</button>
+		</div>
+	{{/each}}
+</div>

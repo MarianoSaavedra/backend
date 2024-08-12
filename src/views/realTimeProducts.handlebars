@@ -1,24 +1,25 @@
-<h1>Real Time</h1>
+<div class="row">
+	<div id="boxProductos" class="main col-8 p-5 gap-5 bg-dark justify-content-center vh-100">
 
-<div id="boxProductos" class="main row p-5 gap-5 bg-dark justify-content-center">
+	</div>
 
+	<form id="formNewProduct" class="text-white col-4 bg-danger vh-100 d-flex flex-column text-center fw-bolder gap-2">
+		<h2>Formulario de alta de Productos</h2>
+		<label for="title">Titutlo</label>
+		<input type="text" id="title" name="title" />
+		<label for="description">Descripcion</label>
+		<input type="text" id="description" name="description" />
+		<label for="price">Precio</label>
+		<input type="text" id="price" name="price" />
+		<label for="code">Codigo</label>
+		<input type="text" id="code" name="code" />
+		<label for="stock">Stock</label>
+		<input type="text" id="stock" name="stock" />
+		<label for="category">Category</label>
+		<input type="category" id="category" name="category" />
+		<input type="submit" value="Enviar" class="col-4 m-auto" />
+	</form>
 </div>
-
-<form id="formNewProduct" class="text-white">
-	<label for="title">Titutlo</label>
-	<input type="text" id="title" name="title" />
-	<label for="description">Descripcion</label>
-	<input type="text" id="description" name="description" />
-	<label for="price">Precio</label>
-	<input type="text" id="price" name="price" />
-	<label for="code">Codigo</label>
-	<input type="text" id="code" name="code" />
-	<label for="stock">Stock</label>
-	<input type="text" id="stock" name="stock" />
-	<label for="category">Category</label>
-	<input type="category" id="category" name="category" />
-	<input type="submit" value="Enviar" />
-</form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
 <script src="js/main.js"></script>
