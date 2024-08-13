@@ -10,10 +10,22 @@
 			crossorigin="anonymous"
 		/>
 	</head>
-	<body>
+	<body class="">
 		<div class="container m-auto vh-100">
 			<header class="header row">
-				<h1 class="col-12 text-center">Mariano Saavedra - 2da Entrega</h1>
+				<h1 class="col-12 text-center">Mariano Saavedra</h1>
+				<button class="col-2 p-1 bg-primary fw-bolder"><a
+						href="http://localhost:8080/"
+						class="text-dark d-block"
+					>Home</a></button>
+				<button class="col-2 p-1 bg-primary fw-bolder"><a
+						href="http://localhost:8080/products"
+						class="text-dark d-block"
+					>Products</a></button>
+				<button class="col-2 p-1 bg-primary fw-bolder"><a
+						href="http://localhost:8080/realtimeproducts"
+						class="text-dark d-block"
+					>Real Time Products</a></button>
 			</header>
 			<main class="main row min-vh-100">
 				{{{body}}}
