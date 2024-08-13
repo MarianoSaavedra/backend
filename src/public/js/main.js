@@ -42,10 +42,11 @@ form.addEventListener("submit", (e) => {
 });
 
 const renderProducts = (productos) => {
-	contenedor.innerHTML = "";
+	let box = document.getElementById("boxProductos");
+	box.innerHTML = "";
 	productos.forEach((producto) => {
 		const card = document.createElement("div");
-		card.innerHTML = `<div class="card col-6 text-center p-3 bg-secondary text-light border-5">
+		card.innerHTML = `<div class="card col-12 text-center p-3 bg-secondary text-light border-5">
 					<img src="https://picsum.photos/150" alt="Imagen Random" class="m-auto rounded-2" />
 					<span>${producto.title}</span>
 					<span>${producto.price}</span>
@@ -55,7 +56,7 @@ const renderProducts = (productos) => {
 					<span>${producto.stock}</span>
 					<button >Eliminar</button>
 				</div>`;
-		contenedor.appendChild(card);
+		box.appendChild(card);
 		card.querySelector("button").addEventListener("click", () => {
 			eliminarProducto(producto.id);
 		});

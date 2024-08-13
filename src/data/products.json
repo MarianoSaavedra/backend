@@ -1,24 +1,46 @@
 [
   {
-    "id": 1,
-    "title": "Arroz",
-    "description": "Largo Fino",
+    "id": 3,
+    "title": "Mayonesa",
+    "description": "Baja en calorias",
     "price": "1500",
     "thumbnails": [],
-    "code": "ARROZ123",
+    "code": "MAY123",
     "stock": "10",
     "status": true,
-    "category": "Alimentos"
+    "category": "Aderezo"
   },
   {
     "id": 1,
-    "title": "Mayones",
-    "description": "Dale",
-    "price": "Que ",
+    "title": "Ketchup",
+    "description": "Picante",
+    "price": "2300",
     "thumbnails": [],
-    "code": "i",
-    "stock": "asda123",
+    "code": "KTP123",
+    "stock": "10",
     "status": true,
-    "category": "123123"
+    "category": "Aderezo"
+  },
+  {
+    "id": 2,
+    "title": "Fideos",
+    "description": "Moñito",
+    "price": "500",
+    "thumbnails": [],
+    "code": "FID123",
+    "stock": "100",
+    "status": true,
+    "category": "Pasta"
+  },
+  {
+    "id": 3,
+    "title": "Carne",
+    "description": "Vacuna",
+    "price": "10000",
+    "thumbnails": [],
+    "code": "CARN123",
+    "stock": "25",
+    "status": true,
+    "category": "Carniceria"
   }
 ]
