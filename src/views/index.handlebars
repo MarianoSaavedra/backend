@@ -9,35 +9,22 @@
 				<span class="m-0 p-0">Categoria: {{this.category}}</span>
 				<span class="m-0 p-0">Codigo: {{this.code}}</span>
 				<span class="m-0 p-0">Stock: {{this.stock}}</span>
-				<button class="m-auto col-4 p-0 mt-5 border-4 rounded-5">Comprar</button>
+				<button class="m-auto col-4 p-0 mt-5 border-4 rounded-5">Comprar
+				</button>
 			</div>
 		{{/each}}
-	{{else}}
-		<div>
-			<h2 class="text-light text-center">Segunda Entrega</h2>
-			<ul class="text-light fs-5">
-				<li>Configurar nuestro proyecto para que trabaje con Handlebars y websocket.</li>
-				<li>Configurar el servidor para integrar el motor de plantillas Handlebars e instalar un servidor de
-					socket.io al mismo.</li>
-				<li>Crear una vista “index.handlebars” la cual contenga una lista de todos los productos agregados hasta
-					el momento y que se encuentre en la ruta “/products”</li>
-				<li>Además, crear una vista “realTimeProducts.handlebars”, la cual estará en la ruta “/realtimeproducts”
-					en nuestro views router, ésta contendrá la misma lista de productos, sin embargo, ésta trabajará
-					sólo con websockets.</li>
-				<li>Al trabajar con websockets, cada vez que creemos un producto nuevo, o bien cada vez que eliminemos
-					un producto, se debe actualizar automáticamente en dicha vista la lista.
-				</li>
-				<li>Ya que la conexión entre una consulta HTTP y websocket no está contemplada dentro de la clase. Se
-					recomienda que para la creación de un producto se creen un formulario simple y para su eliminación
-					que se añada un botón “Eliminar” en cada producto en la vista realTimeProducts.handlebars. Para que
-					el contenido se gestione desde websockets y no HTTP.
-				</li>
-				<li>Para la creación del producto no es necesario añadir el dato “thumbnails”. Es decir, el envío de
-					archivos desde el navegador.
-				</li>
-				<li>Si se desea hacer con HTTP, deberás buscar la forma de utilizar el servidor de Sockets dentro de la
-					petición POST.</li>
-			</ul>
+		<div class="row justify-content-center align-items-center">
+			{{#if this.prevLink}}
+				<button class="btn btn-primary col-2 h-25 p-0">
+					<a href={{this.prevLink}} class="text-dark fw-bold text-decoration-none">
+						Pagina anterior</a></button>
+			{{/if}}
+			<span class="text-danger col-4 fw-bold fs-1 text-center">Pagina {{this.page}} de {{this.totalPages}}</span>
+			{{#if this.nextLink}}
+				<button class="btn btn-danger col-2 h-25 p-0">
+					<a href={{this.nextLink}} class="text-dark fw-bold text-decoration-none">
+						Pagina siguiente</a></button>
+			{{/if}}
 		</div>
 	{{/if}}
 </div>
