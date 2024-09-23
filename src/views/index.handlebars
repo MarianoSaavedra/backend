@@ -1,4 +1,20 @@
-<div class="row p-5 gap-5 bg-dark justify-content-center">
+<div class="gap-5 w-75 bg-success justify-content-center">
+	<h2 class="text-center mt-5 fs-1">Entrega Backend II</h2>
+	<ul class="col-8">
+		<li class="p-3">Crear un modelo User el cual contará con los campos: first_name:String, last_name:String,
+			email:String (único) age:Number, password:String(Hash) cart:Id con referencia a Carts
+			role:String(default:’user’)
+		</li>
+		<li class="p-3">Encriptar la contraseña del usuario mediante el paquete bcrypt (Utilizar el método “hashSync”).</li>
+		<li class="p-3">Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios</li>
+		<li class="p-3">Implementar un sistema de login del usuario que trabaje con jwt. </li>
+		<li class="p-3">Desarrollar una estrategia “current” para extraer la cookie que contiene el token y con dicho
+			token obtener el usuario asociado. En caso de tener el token, devolver al usuario asociado al token, caso
+			contrario devolver un error de passport, utilizar un extractor de cookie.</li>
+		<li class="p-3">Agregar al router /api/sessions/ la ruta /current, la cual validará al usuario logueado y
+			devolverá en una respuesta sus datos (Asociados al JWT).</li>
+	</ul>
+
 	{{#if productos}}
 		{{#each productos}}
 			<div class="card col-3 text-center p-3 bg-success text-dark border-5 border-danger">

@@ -1,0 +1,30 @@
+<div class="gap-5 w-75 bg-success justify-content-center d-flex flex-wrap">
+	{{#if productos}}
+		{{#each productos}}
+			<div class="card col-3 text-center p-3 bg-success text-dark border-5 border-danger">
+				<img src="https://picsum.photos/150" alt="Imagen Random" class="m-auto rounded-2" />
+				<span class="m-0 p-0">Titulo: {{this.title}}</span>
+				<span class="m-0 p-0">Precio: ${{this.price}}</span>
+				<span class="m-0 p-0">Descripcion: {{this.description}}</span>
+				<span class="m-0 p-0">Categoria: {{this.category}}</span>
+				<span class="m-0 p-0">Codigo: {{this.code}}</span>
+				<span class="m-0 p-0">Stock: {{this.stock}}</span>
+				<button class="m-auto col-4 p-0 mt-5 border-4 rounded-5">Comprar
+				</button>
+			</div>
+		{{/each}}
+		<div class="row justify-content-center align-items-center col-12">
+			{{#if this.prevLink}}
+				<button class="btn btn-primary col-2 h-25 p-0">
+					<a href={{this.prevLink}} class="text-dark fw-bold text-decoration-none">
+						Pagina anterior</a></button>
+			{{/if}}
+			<span class="text-danger col-4 fw-bold fs-1 text-center">Pagina {{this.page}} de {{this.totalPages}}</span>
+			{{#if this.nextLink}}
+				<button class="btn btn-danger col-2 h-25 p-0">
+					<a href={{this.nextLink}} class="text-dark fw-bold text-decoration-none">
+						Pagina siguiente</a></button>
+			{{/if}}
+		</div>
+	{{/if}}
+</div>
