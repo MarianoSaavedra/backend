@@ -1,9 +1,9 @@
-<div class="gap-5 w-75 bg-success justify-content-center d-flex flex-wrap">
+<div class="d-flex flex-wrap w-50 m-auto">
 	{{#if productos}}
 		{{#each productos}}
-			<div class="card col-3 text-center p-3 bg-success text-dark border-5 border-danger">
+			<div class="card col-3 m-2 text-center p-1 border-3 border-dark">
 				<img src="https://picsum.photos/150" alt="Imagen Random" class="m-auto rounded-2" />
-				<span class="m-0 p-0">Titulo: {{this.title}}</span>
+				<span class="m-0 p-0">Titulo: {{this.title}}</span>-
 				<span class="m-0 p-0">Precio: ${{this.price}}</span>
 				<span class="m-0 p-0">Descripcion: {{this.description}}</span>
 				<span class="m-0 p-0">Categoria: {{this.category}}</span>
@@ -13,7 +13,7 @@
 				</button>
 			</div>
 		{{/each}}
-		<div class="row justify-content-center align-items-center col-12">
+		<div class="row col-12 bg-dark justify-content-center align-items-center">
 			{{#if this.prevLink}}
 				<button class="btn btn-primary col-2 h-25 p-0">
 					<a href={{this.prevLink}} class="text-dark fw-bold text-decoration-none">

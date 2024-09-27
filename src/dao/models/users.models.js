@@ -27,7 +27,8 @@ const userSchema = new mongoose.Schema({
 		required: true,
 	},
 	cartID: {
-		type: Object,
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "carts",
 		default: await manager.addCart(),
 	},
 	role: {

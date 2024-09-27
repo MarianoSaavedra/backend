@@ -1,17 +1,24 @@
-<div class="gap-5 w-75 bg-success justify-content-center">
-	<h2 class="text-center mt-5 fs-1">Entrega Backend II</h2>
-	<ul class="col-8">
-		<li class="p-3">Crear un modelo User el cual contará con los campos: first_name:String, last_name:String,
-			email:String (único) age:Number, password:String(Hash) cart:Id con referencia a Carts
-			role:String(default:’user’)
+<div class="p-5 d-flex align-items-center">
+	<div class="col-6 mt-1">
+		<h1 class="text-center p-1 m-0">Backend II</h1>
+		<img src="" alt="" />
+	</div>
+
+	<ol class="col-6 mt-1">
+		<li class="p-1 m-0 border-bottom border-5">Crear un modelo User el cual contará con los campos:
+			first_name:String, last_name:String, email:String (único) age:Number, password:String(Hash) cart:Id con
+			referencia a Carts role:String(default:’user’)
 		</li>
-		<li class="p-3">Encriptar la contraseña del usuario mediante el paquete bcrypt (Utilizar el método “hashSync”).</li>
-		<li class="p-3">Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios</li>
-		<li class="p-3">Implementar un sistema de login del usuario que trabaje con jwt. </li>
-		<li class="p-3">Desarrollar una estrategia “current” para extraer la cookie que contiene el token y con dicho
-			token obtener el usuario asociado. En caso de tener el token, devolver al usuario asociado al token, caso
-			contrario devolver un error de passport, utilizar un extractor de cookie.</li>
-		<li class="p-3">Agregar al router /api/sessions/ la ruta /current, la cual validará al usuario logueado y
-			devolverá en una respuesta sus datos (Asociados al JWT).</li>
-	</ul>
+		<li class="p-1 m-0 border-bottom border-5">Encriptar la contraseña del usuario mediante el paquete bcrypt
+			(Utilizar el método “hashSync”).</li>
+		<li class="p-1 m-0 border-bottom border-5">Desarrollar las estrategias de Passport para que funcionen con este
+			modelo de usuarios</li>
+		<li class="p-1 m-0 border-bottom border-5">Implementar un sistema de login del usuario que trabaje con jwt.
+		</li>
+		<li class="p-1 m-0 border-bottom border-5">Desarrollar una estrategia “current” para extraer la cookie que
+			contiene el token y con dicho token obtener el usuario asociado. En caso de tener el token, devolver al
+			usuario asociado al token, caso contrario devolver un error de passport, utilizar un extractor de cookie.</li>
+		<li class="p-1 m-0 border-bottom border-5">Agregar al router /api/sessions/ la ruta /current, la cual validará
+			al usuario logueado y devolverá en una respuesta sus datos (Asociados al JWT).</li>
+	</ol>
 </div>

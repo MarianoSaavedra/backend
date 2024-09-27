@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 	res.render("index");
 });
 
-router.get("/products", passportCall("jwt"), authorization("admin"), async (req, res) => {
+router.get("/products", async (req, res) => {
 	let limit = req.query.limit || 2;
 	let page = req.query.page || 1;
 
@@ -42,20 +42,20 @@ router.get("/realtimeproducts", passportCall("jwt"), authorization("admin"), asy
 });
 
 router.get("/register", (req, res) => {
-	// if (req.session.login) {
-	// 	return res.redirect("/profile");
-	// }
+	if (req.cookies.coderCookieToken) {
+		return res.redirect("/profile");
+	}
 	res.render("register");
 });
 
 router.get("/login", (req, res) => {
-	// if (req.session.login) {
-	// 	return res.redirect("/profile");
-	// }
+	if (req.cookies.coderCookieToken) {
+		return res.redirect("/profile");
+	}
 	res.render("login");
 });
 
-router.get("/profile", passport.authenticate("jwt", { session: false }), (req, res) => {
+router.get("/profile", passportCall("jwt"), (req, res) => {
 	res.render("profile", { usuario: req.user });
 });
 
