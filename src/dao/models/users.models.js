@@ -26,14 +26,14 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	cartID: {
+		type: Object,
+		default: await manager.addCart(),
+	},
 	role: {
 		type: String,
 		enum: ["admin", "user"],
 		default: "user",
-	},
-	cartID: {
-		type: Object,
-		default: await manager.addCart(),
 	},
 });
 

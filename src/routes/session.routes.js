@@ -1,19 +1,22 @@
 import { Router } from "express";
 const router = Router();
 import UserModel from "../dao/models/users.models.js";
-import { createHash, isValidPassword } from "../utils/utils.js";
+import { createHash, isValidPassword, passportCall, authorization } from "../utils/utils.js";
 
-import passport from "passport";
 import generateToken from "../utils/jsonwebtoken.js";
 
 router.post("/register", async (req, res) => {
 	const { first_name, last_name, email, password, age } = req.body;
 
+	if (!first_name || !last_name || !email || !password || !age) {
+		return res.status(400).render("register", { message: "Todos los campos son requeridos" });
+	}
+
 	try {
 		const existeUsuario = await UserModel.findOne({ email });
 
 		if (existeUsuario) {
-			return res.status(400).send("El email ya esta en uso");
+			return res.status(400).render("register", { message: "El email ya esta en uso" });
 		}
 
 		const usuario = await UserModel.create({
@@ -28,15 +31,15 @@ router.post("/register", async (req, res) => {
 			first_name: usuario.first_name,
 			last_name: usuario.last_name,
 			email: usuario.email,
+			role: usuario.role,
 		});
 
-		res.cookie("coderCookie", token, {
-			maxAge: 86400000,
+		res.cookie("coderCookieToken", token, {
+			maxAge: 60 * 60 * 1000,
 			httpOnly: true,
 		});
 
-		res.redirect("/profile");
-		// res.status(201).send({ message: "Usuario creado con exito", token });
+		res.status(201).redirect("/profile");
 	} catch (error) {
 		res.status(500).send("Error interno del server");
 	}
@@ -44,32 +47,48 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
 	const { email, password } = req.body;
+	console.log(email);
+	console.log(password);
+
+	if (!email || !password) {
+		return res.status(400).render("login", { message: "Usuario y contraseña requeridos" });
+	}
 
 	try {
-		const usuario = UserModel.findOne({ email });
+		const usuario = await UserModel.findOne({ email: email });
 
 		if (!usuario) {
-			return res.send("No existe el usuario");
+			return res.status(404).render("login", { message: "Usuario no encontrado" });
 		}
 
 		if (!isValidPassword(password, usuario)) {
-			return res.send("Contraseña incorrecta");
+			return res.status(401).render("login", { message: "Contraseña incorrecta" });
 		}
 
 		const token = generateToken({
 			first_name: usuario.first_name,
 			last_name: usuario.last_name,
 			email: usuario.email,
+			role: usuario.role,
 		});
 
-		res.cookie("coderCookie", token, {
-			maxAge: 86400000,
+		res.cookie("coderCookieToken", token, {
+			maxAge: 60 * 60 * 1000,
 			httpOnly: true,
 		});
 
-		res.send({ message: "Login correcto", token });
+		res.status(200).redirect("/profile");
 	} catch (error) {
-		res.status(500).send("Error interno del server");
+		res.status(500).send(`Error interno del server ${error}`);
+	}
+});
+
+router.get("/logout", async (req, res) => {
+	try {
+		res.clearCookie("coderCookieToken");
+		res.redirect("/");
+	} catch (error) {
+		res.send(error);
 	}
 });
 

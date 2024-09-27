@@ -1,12 +1,16 @@
 <h2></h2>
 
 <form action="/api/sessions/login" method="post">
-	<label for="usuario">Usuario</label>
-	<input type="text" name="usuario" />
+	<label for="email">Usuario</label>
+	<input type="text" name="email" />
 
 	<label for="password">Password</label>
 	<input type="text" name="password" />
 
 	<button type="submit" class="bg-primary">Iniciar sesión</button>
 </form>
+{{#if message}}
+	<p>{{message}}</p>
+{{/if}}
+
 <a href="/api/sessions/github"> GitHub </a>

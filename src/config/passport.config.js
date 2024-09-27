@@ -16,7 +16,7 @@ const initPassport = () => {
 				try {
 					return done(null, jwt_payload);
 				} catch (error) {
-					return done(null, error);
+					return done(error);
 				}
 			}
 		)
@@ -26,7 +26,7 @@ const initPassport = () => {
 const cookieExtractor = (req) => {
 	let token = null;
 	if (req && req.cookies) {
-		token = req.cookies["coderCookie"];
+		token = req.cookies["coderCookieToken"];
 	}
 	return token;
 };

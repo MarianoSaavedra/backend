@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 	res.render("index");
 });
 
-router.get("/products", async (req, res) => {
+router.get("/products", passportCall("jwt"), authorization("admin"), async (req, res) => {
 	let limit = req.query.limit || 2;
 	let page = req.query.page || 1;
 
@@ -36,7 +36,7 @@ router.get("/products", async (req, res) => {
 	}
 });
 
-router.get("/realtimeproducts", async (req, res) => {
+router.get("/realtimeproducts", passportCall("jwt"), authorization("admin"), async (req, res) => {
 	const productos = await manager.getProducts();
 	res.render("realTimeProducts", { productos });
 });

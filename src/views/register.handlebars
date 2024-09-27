@@ -17,5 +17,8 @@
 		<input type="number" name="age" class="col-12 p-2 fw-bold text-dark" />
 
 		<button type="submit" class="m-2 p-1 fw-bolder bg-primary">Registrar</button>
+		{{#if message}}
+			<span class="fw-2 fw-bolder text-danger">{{message}}</span>
+		{{/if}}
 	</form>
 </div>
