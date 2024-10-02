@@ -1,6 +1,38 @@
-<div class="row">
+<div class="row col-12">
 	<div id="boxProductos" class="main col-8 p-5 gap-5 bg-dark vh-100 d-flex flex-wrap">
+		{{#if productos}}
+			<table class="table table-striped col-8">
+				<thead>
+					<tr class="text-center">
+						<th>Imagen</th>
+						<th>Título</th>
+						<th>Precio</th>
+						<th>Descripción</th>
+						<th>Categoría</th>
+						<th>Código</th>
+						<th>Stock</th>
+						<th>Comprar</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each productos}}
+						<tr>
+							<td><img src="https://picsum.photos/150" alt="Imagen Random" class="rounded-2" /></td>
+							<td>{{this.title}}</td>
+							<td>${{this.price}}</td>
+							<td>{{this.description}}</td>
+							<td>{{this.category}}</td>
+							<td>{{this.code}}</td>
+							<td>{{this.stock}}</td>
+							<td>
+								<button class="btn btn-success">Comprar</button>
+							</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
 
+		{{/if}}
 	</div>
 
 	<form id="formNewProduct" class="text-white col-4 bg-danger vh-100 d-flex flex-column text-center fw-bolder gap-2">

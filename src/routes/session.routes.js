@@ -32,6 +32,7 @@ router.post("/register", async (req, res) => {
 			last_name: usuario.last_name,
 			email: usuario.email,
 			role: usuario.role,
+			age: usuario.age,
 		});
 
 		res.cookie("coderCookieToken", token, {
@@ -70,6 +71,7 @@ router.post("/login", async (req, res) => {
 			last_name: usuario.last_name,
 			email: usuario.email,
 			role: usuario.role,
+			age: usuario.age,
 		});
 
 		res.cookie("coderCookieToken", token, {

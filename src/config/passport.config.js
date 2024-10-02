@@ -1,6 +1,5 @@
 import passport from "passport";
 import jwt from "passport-jwt";
-
 const JWTStrategy = jwt.Strategy;
 const ExtractJwt = jwt.ExtractJwt;
 

@@ -29,7 +29,6 @@ const userSchema = new mongoose.Schema({
 	cartID: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "carts",
-		default: await manager.addCart(),
 	},
 	role: {
 		type: String,
@@ -37,6 +36,24 @@ const userSchema = new mongoose.Schema({
 		default: "user",
 	},
 });
+
+userSchema.pre("save", async function (next) {
+	if (!this.cartID) {
+		const newCart = await manager.addCart();
+		this.cartID = newCart._id;
+	}
+	next();
+});
+
+// userSchema.pre("findOne", function (next) {
+// 	this.populate({
+// 		path: "cartID",
+// 		populate: {
+// 			path: "products",
+// 		},
+// 	}),
+// 		next();
+// });
 
 const UserModel = mongoose.model("Users", userSchema);
 

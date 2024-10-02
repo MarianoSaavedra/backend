@@ -1,8 +1,11 @@
-<h2>Mi Perfil</h2>
+<section class="col-6 h-75">
+	<h2 class="text-center">Mi perfil</h2>
 
-<p>Bienvenido: {{usuario.first_name}}</p>
-<p>{{usuario.last_name}}</p>
-<p>{{usuario.email}}</p>
-<p>{{usuario.age}}</p>
-
-<a href="/api/sessions/logout">Desloguear</a>
+	<form action="/api/sessions/logout" class="border border-2 rounded-3 p-3 text-center">
+		<p>Nombre: {{usuario.first_name}}</p>
+		<p>Apellido: {{usuario.last_name}}</p>
+		<p>Email: {{usuario.email}}</p>
+		<p>Edad: {{usuario.age}}</p>
+		<button type="submit">Desloguear</button>
+	</form>
+</section>
