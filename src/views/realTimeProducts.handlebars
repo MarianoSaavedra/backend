@@ -35,7 +35,12 @@
 		{{/if}}
 	</div>
 
-	<form id="formNewProduct" class="text-white col-4 bg-danger vh-100 d-flex flex-column text-center fw-bolder gap-2">
+	<form
+		id="formNewProduct"
+		action="/api/products/"
+		method="post"
+		class="text-white col-4 bg-danger vh-100 d-flex flex-column text-center fw-bolder gap-2"
+	>
 		<h2>Formulario de alta de Productos</h2>
 		<label for="title">Titutlo</label>
 		<input type="text" id="title" name="title" />

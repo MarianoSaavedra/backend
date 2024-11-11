@@ -1,13 +1,10 @@
 import bcrypt from "bcrypt";
 import passport from "passport";
+import crypto from "crypto";
 
-const createHash = (password) => {
-	return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-};
+const createHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
-const isValidPassword = (password, user) => {
-	return bcrypt.compareSync(password, user.password);
-};
+const isValidPassword = (password, user) => bcrypt.compareSync(password, user.password);
 
 const passportCall = (strategy) => {
 	return async (req, res, next) => {
@@ -27,10 +24,14 @@ const passportCall = (strategy) => {
 const authorization = (role) => {
 	return async (req, res, next) => {
 		if (req.user.role !== role) {
-			return res.status(403).send({ message: "No tenes permiso" });
+			return res.status(403).send({ message: "Acceso no autorizado" });
 		}
 		next();
 	};
 };
 
-export { passportCall, authorization, createHash, isValidPassword };
+const ticketNumber = () => {
+	return crypto.randomUUID();
+};
+
+export { passportCall, authorization, createHash, isValidPassword, ticketNumber };

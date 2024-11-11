@@ -1,19 +1,15 @@
 import express from "express";
 const router = express.Router();
 
-import ProductManager from "../dao/db/product-manager-db.js";
-import ProductModel from "../dao/models/products.models.js";
-import passport from "passport";
+import ProductModel from "../dao/models/product.models.js";
 
 import { passportCall, authorization } from "../utils/utils.js";
-
-const manager = new ProductManager();
 
 router.get("/", async (req, res) => {
 	res.render("index");
 });
 
-router.get("/products", async (req, res) => {
+router.get("/products", passportCall("jwt"), authorization("user"), async (req, res) => {
 	let limit = req.query.limit || 2;
 	let page = req.query.page || 1;
 

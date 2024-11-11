@@ -9,7 +9,7 @@ const initPassport = () => {
 		new JWTStrategy(
 			{
 				jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
-				secretOrKey: "coderhouse",
+				secretOrKey: process.env.JWT_SECRET,
 			},
 			async (jwt_payload, done) => {
 				try {

@@ -1,90 +1,17 @@
-import { Router } from "express";
-import ProductManager from "../dao/db/product-manager-db.js";
+import express from "express";
+const router = express.Router();
 
-const router = Router();
-const manager = new ProductManager();
+import ProductController from "../controllers/product.controller.js";
+const productController = new ProductController();
 
-// AGREGAR UN PRODUCTO //
+router.get("/", productController.getProducts);
 
-router.post("/", async (req, res) => {
-	const newProduct = req.body;
-	try {
-		await manager.addProduct(newProduct);
-		res.send({ status: 201, body: "Producto agregado correctamente" });
-	} catch (error) {
-		res.send({ status: 500, body: "No se pudo cargar el producto", error });
-	}
-});
+router.get("/:id", productController.getProductById);
 
-// BUSCAR PRODUCTOS
-router.get("/", async (req, res) => {
-	const limit = parseInt(req.query.limit) || 10;
-	const page = parseInt(req.query.page) || 1;
-	const sort = req.query.sort === "desc" ? -1 : 1;
-	const query = req.query.query;
+router.post("/", productController.createProduct);
 
-	try {
-		const products = await manager.getProducts({ limit, page, sort, query });
+router.put("/:id", productController.updateProductById);
 
-		res.json({
-			status: "200",
-			payload: products.docs,
-			totalPages: products.totalPages,
-			prevPage: products.prevPage,
-			nextPage: products.nextPage,
-			page: products.currentPage,
-			hasPrevPage: products.hasPrevPage,
-			hasNextPage: products.hasNextPage,
-			prevLink: products.hasPrevPage ? `/api/products?limit=${limit}&page=${products.prevPage}` : null,
-			nextLink: products.hasNextPage ? `/api/products?limit=${limit}&page=${products.nextPage}` : null,
-		});
-	} catch (error) {
-		res.json({
-			status: 500,
-			body: "Error interno del servidor",
-		});
-	}
-});
-
-//GET PRODUCT BY ID
-router.get("/:pid", async (req, res) => {
-	const id = req.params.pid;
-	try {
-		const productoBuscado = await manager.getProductsById(id);
-		if (!productoBuscado) {
-			return res.send({ status: 404, body: "Producto no encontrado" });
-		}
-		res.send({ status: 200, body: productoBuscado });
-	} catch (error) {
-		res.send({ status: 500, body: "Error del servidor" });
-	}
-});
-
-//UPDATE PRODUCT BY ID
-router.put("/:pid", async (req, res) => {
-	try {
-		const id = req.params.pid;
-		const nuevosDatos = req.body;
-
-		await manager.updateProductById(id, nuevosDatos);
-
-		res.send({ status: 200, body: "Producto actualizado correctamente" });
-	} catch (error) {
-		res.send({ status: 500, body: "Ups, algo se rompio" });
-	}
-});
-
-//DELETE PRODUCT BY ID
-router.delete("/:pid", async (req, res) => {
-	try {
-		const id = req.params.pid;
-
-		await manager.deleteProductById(id);
-
-		res.send({ status: 200, body: "Producto eliminado correctamente" });
-	} catch (error) {
-		res.send({ status: 500, body: "Ups, algo se rompio" });
-	}
-});
+router.delete("/:id", productController.deleteProductById);
 
 export default router;
